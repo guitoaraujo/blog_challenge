@@ -7,7 +7,7 @@
     <div class="card-header bg-dark text-success">
       <span class="badge badge-light"><%= post.comments.count %> </span>
       <span class="badge badge-light"><%= post.user.name %> </span>
-      <span class="badge badge-light"><%= post.created_at.strftime('%m-%d-%y at %H:%M' ) %> </span>
+      <span class="badge badge-light"><%= time_ago_in_words(post.created_at) %> </span>
     </div>
     <div class="card-body">
       <h5 class="card-title"><%= post.title %></h5>
