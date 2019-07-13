@@ -1,34 +1,18 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Posts</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Comments</th>
-      <th>Title</th>
-      <th>Body</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.comments.count %></td>
-        <td><%= link_to post.title, post %></td>
-        <td><%= truncate(post.body, length: 200, omission: '...') %></td>
-        <td><%= post.user.name %></td>
-        <% if user_signed_in? %>
-          <td><%= link_to 'Edit', edit_post_path(post) %></td>
-          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+<% @posts.each do |post| %>
+  <div class="card">
+    <div class="card-header bg-dark text-success">
+      <span class="badge badge-light"><%= post.comments.count %> </span>
+      <span class="badge badge-light"><%= post.user.name %> </span>
+      <span class="badge badge-light"><%= post.created_at.strftime('%m-%d-%y at %H:%M' ) %> </span>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= truncate(post.body, length: 200, omission: '...') %></p>
+      <%= link_to 'Read more', post, class: 'btn btn-success' %>
+      <% if user_signed_in? %>
+        <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn-warning' %>
+        <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

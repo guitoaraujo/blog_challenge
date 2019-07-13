@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :verify_user!, except: [:index]
+  before_action :verify_user!, except: [:index, :new, :create]
 
   def index
     @posts = Post.all
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   private
 
     def verify_user!
-      redirect_to index_path unless @post.user == current_user || current_user.admin?
+      redirect_to posts_path unless @post.user == current_user || current_user.admin?
     end
 
     def set_post

@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <%= link_to 'Home', root_path, class: 'navbar-brand' %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -12,14 +12,16 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
-            <%= link_to 'Profile', edit_user_registration_path(current_user), class: "dropdown-item" %>
+            <%= link_to 'Profile', edit_user_registration_path(current_user), class: 'dropdown-item' %>
             <div class="dropdown-divider"></div>
-            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
           <% else %>
-            <%= link_to 'login', new_user_session_path, class: "dropdown-item" %>
+            <%= link_to 'Login', new_user_session_path, class: 'dropdown-item' %>
+            <%= link_to 'Sign up', new_user_registration_path, class: 'dropdown-item' %>
           <% end %>
         </div>
       </li>
+      <li class="nav-item"><%= link_to 'New Post', new_post_path, class: 'nav-link' %></li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

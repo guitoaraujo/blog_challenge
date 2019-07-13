@@ -1,44 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="card mb-3">
+  <div class="card-header">
+    <%= @post.title %>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= @post.body %></p>
+      <footer class="blockquote-footer"> <cite title="Source Title"><%= @post.user.name %></cite></footer>
+    </blockquote>
+    <% if current_user == @post.user%>
+      <%= link_to 'Edit', edit_post_path(@post), class: 'btn btn-sm btn-warning' %>
+    <% end %>
+  </div>
+</div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
-
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @post.user.name %>
-</p>
-
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Body</th>
-  </tr>
-  </thead>
-
-  <tbody>
+<ul class="list-group list-group-flush mb-3">
   <% @comments.each do |comment| %>
-    <tr>
-      <td><%= comment.name %></td>
-      <td><%= comment.body %></td>
-    </tr>
+    <li class="list-group-item">
+      <blockquote class="blockquote mb-0" style="font-size: 16px;">
+        <p><%= comment.body %></p>
+        <footer class="blockquote-footer">
+          <cite title="Source Title">
+            <%= comment.name.blank? ? 'anonymous' : comment.name %>
+          </cite>
+        </footer>
+      </blockquote>
+    </li>
   <% end %>
-  </tbody>
-</table>
+</ul>
 
-<%= form_tag(comments_path, method: :post) do %>
-  <%= text_field_tag :name %>
-  <%= text_area_tag :body %>
+<%= form_tag(comments_path, method: :post, class: 'form-inline') do %>
+  <div class="form-group mb-2 col-2">
+    <%= text_field_tag :name, '', placeholder: 'Name', class: 'form-control-plaintext p-1' %>
+  </div>
+  <div class="form-group mb-2 col-9">
+    <%= text_field_tag :body, '', placeholder: 'Comment here...', class: 'form-control-plaintext p-1' %>
+  </div>
   <%= hidden_field_tag :post_id, @post.id %>
-  <%= submit_tag %>
+  <%= submit_tag 'Comment', class: 'btn btn-primary mb-2 col-1' %>
 <% end %>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
