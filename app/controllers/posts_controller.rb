@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :verify_user!, except: [:index, :new, :create]
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc).page params[:page]
   end
 
   def show
