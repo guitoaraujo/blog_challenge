@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: blog_challenge_production
-  username: blog_challenge
-  password: <%= ENV['BLOG_CHALLENGE_DATABASE_PASSWORD'] %>
+  database: myapp_production
+  username: myapp
+  password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
