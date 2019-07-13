@@ -3,6 +3,7 @@
     <%= @post.title %>
   </div>
   <div class="card-body">
+    <small><%= @post.created_at.strftime('%m/%d/%Y at %H:%M:%S') %></small>
     <blockquote class="blockquote mb-0">
       <p><%= @post.body %></p>
       <footer class="blockquote-footer"> <cite title="Source Title"><%= @post.user.name %></cite></footer>
@@ -16,11 +17,11 @@
 <ul class="list-group list-group-flush mb-3">
   <% @comments.each do |comment| %>
     <li class="list-group-item">
-      <blockquote class="blockquote mb-0" style="font-size: 16px;">
+      <blockquote class="blockquote mb-0" style="font-size: 14px;">
         <p><%= comment.body %></p>
         <footer class="blockquote-footer">
           <cite title="Source Title">
-            <%= comment.name.blank? ? 'anonymous' : comment.name %>
+            <%= comment.name.blank? ? 'anonymous' : comment.name %> <%= time_ago_in_words(comment.created_at) %>
           </cite>
         </footer>
       </blockquote>
