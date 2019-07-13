@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Comments</th>
       <th>Title</th>
       <th>Body</th>
       <th>User</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td><%= post.comments.count %></td>
         <td><%= link_to post.title, post %></td>
         <td><%= truncate(post.body, length: 200, omission: '...') %></td>
         <td><%= post.user.name %></td>
