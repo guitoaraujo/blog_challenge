@@ -28,7 +28,7 @@
   <% end %>
 </ul>
 
-<%= form_tag(comments_path, method: :post, class: 'form-inline') do %>
+<%= form_tag(comments_path, class: 'form-inline') do %>
   <div class="form-group mb-2 col-2">
     <%= text_field_tag :name, '', placeholder: 'Name', class: 'form-control-plaintext p-1' %>
   </div>
